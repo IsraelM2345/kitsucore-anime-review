@@ -3,6 +3,40 @@ import 'pages/welcome_page.dart';
 import 'pages/login_page.dart';
 import 'pages/signup_page.dart';
 import 'pages/home_page.dart';
+import 'pages/anime_browse.dart';
+
+class MyListManager {
+  final Set<int> _animeList = {};
+  final Set<int> _mangaList = {};
+
+  Set<int> get animeList => _animeList;
+  Set<int> get mangaList => _mangaList;
+
+  void addToAnimeList(int index) {
+    _animeList.add(index);
+  }
+
+  void removeFromAnimeList(int index) {
+    _animeList.remove(index);
+  }
+
+  bool isInAnimeList(int index) => _animeList.contains(index);
+
+  void addToMangaList(int index) {
+    _mangaList.add(index);
+  }
+
+  void removeFromMangaList(int index) {
+    _mangaList.remove(index);
+  }
+
+  bool isInMangaList(int index) => _mangaList.contains(index);
+
+  int get totalItems => _animeList.length + _mangaList.length;
+}
+
+// Global instance
+final myListManager = MyListManager();
 
 void main() {
   runApp(const MyAnimeListApp());
@@ -73,6 +107,7 @@ class MyAnimeListApp extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/signup': (context) => const SignupPage(),
         '/home': (context) => const HomePage(),
+        '/browse': (context) => AnimeBrowsePage(),
       },
     );
   }
